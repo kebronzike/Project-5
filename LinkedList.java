@@ -1,6 +1,3 @@
-/**
- * 
- */
 package prj5;
 
 import java.util.Iterator;
@@ -28,9 +25,6 @@ import java.util.NoSuchElementException;
 * 
 */
 public class LinkedList<E> {
-
-    
-    
     private Node<E> head;
     private int size;
 
@@ -462,8 +456,7 @@ public class LinkedList<E> {
              * Constructor for a new LinkedListIterator
              */
             public LinkedListIterator() 
-            {
-                
+            { 
                 prev = null;
                 curr = null;
                 next = head;
@@ -480,12 +473,9 @@ public class LinkedList<E> {
              */
             @Override
             public boolean hasNext() 
-            {
-                
+            { 
                 return (next != null);
-
             }
-
             
 
             /**
@@ -499,12 +489,10 @@ public class LinkedList<E> {
             @Override
             public E next() 
             {
-
                 if (!hasNext())
                 {
                     throw new NoSuchElementException("No nodes left in the list.");
-                }
-                
+                }           
                 prev = curr;
                 curr = next;
                 next = next.getNext();
@@ -527,8 +515,7 @@ public class LinkedList<E> {
              */
              @Override
             public void remove() 
-            {
-                
+            {     
                 if (next == head)
                 {
                     throw new IllegalStateException(
@@ -545,17 +532,10 @@ public class LinkedList<E> {
                 } else {
                     prev.setNext(curr.getNext());
                     curr = prev;
-                     //this code that updates prev is not necessary
-                     //because next() must be called before another remove()
-                     //and that will update prev, saving this O(n) operation
-                     //prev = firstNode;
-                     //while ((prev != null) && (prev.getNext() != curr)){
-                     //    prev = prev.getNext();
-                     //}
+                    }
                 }
                 size--;
-                calledNext = false;
-                
+                calledNext = false; 
             }
         }
     }
