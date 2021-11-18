@@ -55,6 +55,7 @@ public class Reader {
      * @return LinkedList<Race> races
      *            the list of all the races for a certain state
      * @throws FileNotFoundException
+     *            will throw when a file is not found
      */
     public LinkedList<Race> readFiles(String fileName)
         throws FileNotFoundException {
