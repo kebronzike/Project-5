@@ -21,6 +21,6 @@ import java.io.FileNotFoundException;
 public class Input {
     public static void main(String[] args) throws FileNotFoundException {
         @SuppressWarnings("unused")
-        covidReader project = new covidReader("Cases_and_Deaths_by_race_CRDT_Sep2020.csv");
+        Reader project = new Reader("Cases_and_Deaths_by_race_CRDT_Sep2020.csv");
     }
 }
