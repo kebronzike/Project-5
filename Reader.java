@@ -4,6 +4,24 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+//Virginia Tech Honor Code Pledge:
+//
+//As a Hokie, I will conduct myself with honor and integrity at all times.
+//I will not lie, cheat, or steal, nor will I accept the actions of those who
+//do.
+//-- Joshua Murphy (Jmmurphy), Connor Pepin (connorpepin), Kebron Zike
+//(kebronZike)
+
+//-------------------------------------------------------------------------
+/**
+* This class reads the data
+* 
+* @author Joshua Murphy (jmmurphy)
+* @author Connor Pepin (connorpepin)
+* @author Kebron Zike (kebronZike)
+* @version 2021.11.15
+* 
+*/
 public class Reader {
 
     private Scanner filereader;
@@ -35,6 +53,7 @@ public class Reader {
      * @param filename
      *            the filename
      * @return LinkedList<Race> races
+     *            the list of all the races for a certain state
      * @throws FileNotFoundException
      */
     public LinkedList<Race> readFiles(String fileName)
