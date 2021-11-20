@@ -1,33 +1,34 @@
 package prj5;
 
+// Virginia Tech Honor Code Pledge:
+//
+// As a Hokie, I will conduct myself with honor and integrity at all times.
+// I will not lie, cheat, or steal, nor will I accept the actions of those who
+// do.
+// -- Joshua Murphy (Jmmurphy), Connor Pepin (connorpepin), Kebron Zike
+// (kebronZike)
+
+// -------------------------------------------------------------------------
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-//Virginia Tech Honor Code Pledge:
-//
-//As a Hokie, I will conduct myself with honor and integrity at all times.
-//I will not lie, cheat, or steal, nor will I accept the actions of those who
-//do.
-//-- Joshua Murphy (Jmmurphy), Connor Pepin (connorpepin), Kebron Zike
-//(kebronZike)
-
-//-------------------------------------------------------------------------
 /**
-* This class reads the data
-* 
-* @author Joshua Murphy (jmmurphy)
-* @author Connor Pepin (connorpepin)
-* @author Kebron Zike (kebronZike)
-* @version 2021.11.15
-* 
-*/
+ * this is the reader class, it will take in a file and create a covidcalc
+ * instance in order to intiate the program
+ * 
+ * @author Joshua Murphy (jmmurphy)
+ * @author Connor Pepin (connorpepin)
+ * @author Kebron Zike (kebronZike)
+ * @version 2021.11.17
+ *
+ */
+
 public class Reader {
 
     private Scanner filereader;
-    private LinkedList<Race> races;
-    private String deaths;
-    private String cases;
+    private LinkedList<Race>[] races;
     public static final int STARTING_INDEX = 1;
     public static final int FINAL_INDEX = 6;
 
@@ -40,8 +41,9 @@ public class Reader {
      *             will throw when a file is not found
      */
     public Reader(String theFileName) throws FileNotFoundException {
-        races = new LinkedList<>();
         races = readFiles(theFileName);
+        CovidCalc calc = new CovidCalc(races);
+        calc.toString();
 
     }
 
@@ -53,11 +55,10 @@ public class Reader {
      * @param filename
      *            the filename
      * @return LinkedList<Race> races
-     *            the list of all the races for a certain state
      * @throws FileNotFoundException
-     *            will throw when a file is not found
      */
-    public LinkedList<Race> readFiles(String fileName)
+    public LinkedList<Race>[] readFiles(String fileName)
+
         throws FileNotFoundException {
         filereader = new Scanner(new File((fileName)));
         filereader.nextLine();
@@ -66,10 +67,8 @@ public class Reader {
             String[] readNext = readline.split(",");
             for (int index = STARTING_INDEX; index <= readNext.length
                 - FINAL_INDEX; index++) {
-                deaths = readNext[5 + index];
-                cases = readNext[index];
-                races.add(new Race(RaceEnum.values()[index - FINAL_INDEX],
-                    cases, deaths, readNext[0]));
+                String deaths = readNext[5 + index];
+                String cases = readNext[index];
 
             }
 
