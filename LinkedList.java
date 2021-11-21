@@ -308,12 +308,16 @@ public class LinkedList<E> {
      *            the type of comparator used for the sorting
      */
     public void sortList(Comparator<E> typeOfComparator) {
-        for (int i = 1; i < size; i++) {
-            for (int j = i; (j > 0) && typeOfComparator.compare(get(i), get(i
-                - 1)) < 0; j++) {
-                switchNode(j, j - 1);
+        for (int i = 0; i < this.size() - 1; i++) {
+            int tempDex = i;
+            for (int j = i+1; j < this.size(); j++) {
+                if (typeOfComparator.compare(get(tempDex), get(j)) > 0) {
+                    tempDex = j;
+                }
             }
+            switchNode(i, tempDex);
         }
+        
     }
 
 
@@ -417,7 +421,8 @@ public class LinkedList<E> {
      *
      * @param <E>
      */
-    @SuppressWarnings("hiding") class Node<E> {
+    @SuppressWarnings("hiding")
+    class Node<E> {
         private E data;
         private Node<E> next;
 
