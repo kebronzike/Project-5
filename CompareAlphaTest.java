@@ -42,7 +42,7 @@ public class CompareAlphaTest extends student.TestCase {
     public void testCompareAlpha() {
         assertEquals(test1.compare(a, b), -1);
         assertEquals(test1.compare(c, b), 1);
-        assertEquals(test1.compare(a, a), 0);
+        assertEquals(test1.compare(a, a), 1);
     }
 
 }
