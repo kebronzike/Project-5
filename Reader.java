@@ -1,4 +1,4 @@
-ppackage prj5;
+package prj5;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -75,6 +75,4 @@ public class Reader {
         }
         return states;
     }
-
 }
-
