@@ -1,22 +1,22 @@
 package prj5;
 
+/**
+ * this is the testing class for the race class
+ * 
+ * @author Joshua Murphy (jmmurphy)
+ * @author Connor Pepin (connorpepin)
+ * @author Kebron Zike (kebronZike)
+ * @version 2021.11.17
+ *
+ */
 public class RaceTest extends student.TestCase {
     private Race tester;
-    private RaceEnum enumrace;
 
     /**
      * this will set up the test methods for the race class
      */
     public void setUp() {
-        tester = new Race(RaceEnum.BLACK, "10", "10", "Virginia");
-    }
-
-
-    /**
-     * this will test the get state method
-     */
-    public void testgetState() {
-        assertEquals(tester.getState(), "Virginia");
+        tester = new Race("black", "10", "10");
     }
 
 
@@ -25,7 +25,7 @@ public class RaceTest extends student.TestCase {
      */
     @SuppressWarnings("static-access")
     public void testgetRace() {
-        assertEquals(tester.getRace(), enumrace.BLACK);
+        assertEquals(tester.getRace(), "black");
     }
 
 
@@ -52,14 +52,14 @@ public class RaceTest extends student.TestCase {
     public void testEquals() {
         Race empty = null;
         assertFalse(tester.equals(empty));
-        Race test1 = new Race(enumrace.BLACK, "4", "3", "Georgia");
+        Race test1 = new Race("black", "4", "3");
         assertFalse(tester.equals(test1));
-        Race test2 = new Race(enumrace.BLACK, "10", "3", "Georgia");
+        Race test2 = new Race("black", "10", "3");
         assertFalse(tester.equals(test2));
         @SuppressWarnings("unused")
-        Race test3 = new Race(enumrace.BLACK, "10", "10", "Georgia");
+        Race test3 = new Race("black", "10", "10");
         assertFalse(tester.equals(test1));
-        Race copy = new Race(enumrace.BLACK, "10", "10", "Virginia");
+        Race copy = new Race("black", "10", "10");
         assertTrue(tester.equals(copy));
         assertTrue(tester.equals(tester));
     }
@@ -69,14 +69,19 @@ public class RaceTest extends student.TestCase {
      * this will test the compareTo method
      */
     public void testcompareTo() {
-
-        Race test1 = new Race(RaceEnum.ASIAN, "10", "10", "Virginia");
-        Race test2 = new Race(RaceEnum.WHITE, "10", "10", "Virginia");
-        System.out.print(test2.getRace().toString());
         assertEquals(tester.compareTo(tester), 0);
-        assertEquals(test1.compareTo(tester), -1);
-        assertEquals(tester.compareTo(test1), 1);
+    }
 
+
+    /**
+     * this will test the calculateCFR method
+     */
+    public void testcalculateCFR() {
+        Race temp = new Race("black", "-1", "10");
+        Race temp2 = new Race("black", "10", "-1");
+        assertEquals(temp.calculateCFR(), -1, 0.01);
+        assertEquals(temp2.calculateCFR(), -1, 0.01);
+        assertEquals(tester.calculateCFR(), 100.0, 0.01);
     }
 
 
@@ -85,7 +90,7 @@ public class RaceTest extends student.TestCase {
      */
     public void testtoString() {
         assertEquals(tester.toString(),
-            "Race: BLACK Cases: 10 Deaths: 10 State: Virginia");
+            "black: 10 cases, 10 deaths, 100.0% CFR");
     }
 
 }
