@@ -1,6 +1,6 @@
 package prj5;
 
-public class Race implements Comparable<Race> {
+public class Race {
     private String raceName;
     private String fatalities;
     private String totalcases;
@@ -39,8 +39,8 @@ public class Race implements Comparable<Race> {
      * 
      * @return String deaths
      */
-    public int getDeaths() {
-        if (fatalities == "NA") {
+    public double getDeaths() {
+        if (fatalities.equals("NA")) {
             return -1;
         }
         return Integer.parseInt(fatalities);
@@ -52,8 +52,8 @@ public class Race implements Comparable<Race> {
      * 
      * @return String of cases
      */
-    public int getCases() {
-        if (fatalities == "NA") {
+    public double getCases() {
+        if (totalcases.equals("NA")) {
             return -1;
         }
         return Integer.parseInt(totalcases);
@@ -97,7 +97,7 @@ public class Race implements Comparable<Race> {
      */
     public double calculateCFR() {
         if (getCases() == -1 || getDeaths() == -1) {
-            return -1;
+            return -1.0;
         }
         return (getDeaths() / getCases()) * 100;
     }
@@ -111,15 +111,13 @@ public class Race implements Comparable<Race> {
     public String toString() {
         StringBuilder str = new StringBuilder();
         str.append(raceName + ": ");
-        str.append(getCases() + " cases, ");
-        str.append(getDeaths() + " deaths, ");
-        str.append(calculateCFR() + "% CFR");
+        str.append((int)getCases() + " cases, ");
+        if (((calculateCFR() % 1) < 0.05)) {
+            str.append((int)calculateCFR() + "% CFR");
+        }
+        else {
+            str.append(String.format("%.1f", calculateCFR()) + "% CFR");
+        }
         return str.toString();
-    }
-
-
-    @Override
-    public int compareTo(Race o) {
-        return 0;
     }
 }
