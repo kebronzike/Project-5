@@ -1,30 +1,29 @@
 package prj5;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-
-
-
-//Virginia Tech Honor Code Pledge:
+// Virginia Tech Honor Code Pledge:
 //
-//As a Hokie, I will conduct myself with honor and integrity at all times.
-//I will not lie, cheat, or steal, nor will I accept the actions of those who
-//do.
-//-- Joshua Murphy (Jmmurphy), Connor Pepin (connorpepin), Kebron Zike
-//(kebronZike)
+// As a Hokie, I will conduct myself with honor and integrity at all times.
+// I will not lie, cheat, or steal, nor will I accept the actions of those who
+// do.
+// -- Joshua Murphy (Jmmurphy), Connor Pepin (connorpepin), Kebron Zike
+// (kebronZike)
 
-//-------------------------------------------------------------------------
+// -------------------------------------------------------------------------
 /**
-* Stores the data for the project
-* 
-* @author Joshua Murphy (jmmurphy)
-* @author Connor Pepin (connorpepin)
-* @author Kebron Zike (kebronZike)
-* @version 2021.11.15
-* 
-*/
+ * Stores the data for the project
+ * 
+ * @author Joshua Murphy (jmmurphy)
+ * @author Connor Pepin (connorpepin)
+ * @author Kebron Zike (kebronZike)
+ * @version 2021.11.15
+ * 
+ */
 public class LinkedList<E> {
+
     private Node<E> head;
     private int size;
 
@@ -233,6 +232,23 @@ public class LinkedList<E> {
 
 
     /**
+     * Gets the node at a certain index
+     * 
+     * @param index
+     *            the index where the node is
+     * @return
+     *         the node at a given index
+     */
+    public Node<E> getNode(int index) {
+        Node<E> current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.getNext();
+        }
+        return current;
+    }
+
+
+    /**
      * Sees if the linked list contains a certain node
      * 
      * @param obj
@@ -284,6 +300,38 @@ public class LinkedList<E> {
             current = current.next;
         }
         return lastIndex;
+    }
+
+
+    /**
+     * @param typeOfComparator
+     *            the type of comparator used for the sorting
+     */
+    public void sortList(Comparator<E> typeOfComparator) {
+        for (int i = 1; i < size; i++) {
+            for (int j = i; (j > 0) && typeOfComparator.compare(get(i), get(i
+                - 1)) < 0; j++) {
+                switchNode(j, j - 1);
+            }
+        }
+    }
+
+
+    /**
+     * A helper method that switch nodes in the linked list
+     * 
+     * @param firstIndex
+     *            the first index of the node
+     * @param nextIndex
+     *            the index of the node being compared
+     */
+    private void switchNode(int firstIndex, int nextIndex) {
+        Node<E> node1 = this.getNode(firstIndex);
+        Node<E> node2 = this.getNode(nextIndex);
+
+        E temp = node2.getData();
+        node2.setData(node1.getData());
+        node1.setData(temp);
     }
 
 
@@ -361,19 +409,16 @@ public class LinkedList<E> {
         }
         return false;
     }
-    
-    
-    //----------PRIVATE NODE CLASS------------------
+
+    // ----------PRIVATE NODE CLASS------------------
 
     /**
      * Private node class for the linked list
      *
      * @param <E>
      */
-    private class Node<E> {
-        
+    @SuppressWarnings("hiding") class Node<E> {
         private E data;
-
         private Node<E> next;
 
         /**
@@ -418,129 +463,135 @@ public class LinkedList<E> {
         public E getData() {
             return data;
         }
-        
-        
-        
-        }
-        
-        /**
-         * Iterator method creates Iterator object
-         *
-         * @return new Iterator object
-         */
-        public Iterator<E> iterator()
-        {
-            return new LinkedListIterator<E>();
-        } 
-        
-        
-        //-------PRIVATE ITERATOR CLASS-----------------
+
 
         /**
-         * Iterator for the linked list
+         * Sets the data to a nod
          * 
-         * 
-         * @author connorpepin
-         *
-         * @param <A>
+         * @param d
+         *            the data being set
          */
-        private class LinkedListIterator<A> implements Iterator<E> {
-            
-            private Node<E> prev;
-            private Node<E> curr;
-            private Node<E> next;
-
-            private boolean calledNext;
-
-            /**
-             * Constructor for a new LinkedListIterator
-             */
-            public LinkedListIterator() 
-            { 
-                prev = null;
-                curr = null;
-                next = head;
-                calledNext = false;
-                
-            }
-
-
-            /**
-             * Checks if there are any more
-             * elements in the list
-             * 
-             * @return true if there are more elements in the list
-             */
-            @Override
-            public boolean hasNext() 
-            { 
-                return (next != null);
-            }
-            
-
-            /**
-             * Gets the next value in the list
-             * 
-             * @return the next value
-             * @throws NoSuchElementException
-             *             if there are no nodes left in the list
-             * 
-             */
-            @Override
-            public E next() 
-            {
-                if (!hasNext())
-                {
-                    throw new NoSuchElementException("No nodes left in the list.");
-                }           
-                prev = curr;
-                curr = next;
-                next = next.getNext();
-                if (curr == null)
-                {
-                    throw new NoSuchElementException("No nodes left in the list.");
-                }
-                calledNext = true;
-                return curr.data;
-            }
-
-            
-
-            /**
-             * Removes the last object returned with next() from the list
-             *
-             * @throws IllegalStateException
-             *             if next has not been called yet
-             *             and if the element has already been removed
-             */
-             @Override
-            public void remove() 
-            {     
-                if (next == head)
-                {
-                    throw new IllegalStateException(
-                         "Next has not been called yet.");
-                }
-                else if (!calledNext)
-                {
-                    throw new IllegalStateException(
-                         "The Element has already been removed.");
-                }
-                else if (curr == head) {
-                    head = next;
-                    curr = null;
-                } else {
-                    prev.setNext(curr.getNext());
-                    curr = prev;
-                    }
-                }
-                size--;
-                calledNext = false; 
-            }
+        public void setData(E d) {
+            data = d;
         }
+
     }
 
-    
-    
-    
+    /**
+     * Iterator method creates Iterator object
+     *
+     * @return new Iterator object
+     */
+    public Iterator<E> iterator() {
+        return new LinkedListIterator<E>();
+    }
 
+    // -------PRIVATE ITERATOR CLASS-----------------
+
+    /**
+     * Iterator for the linked list
+     * 
+     * 
+     * @author connorpepin
+     *
+     * @param <A>
+     */
+    private class LinkedListIterator<A> implements Iterator<E> {
+
+        private Node<E> prev;
+        private Node<E> curr;
+        private Node<E> next;
+
+        private boolean calledNext;
+
+        /**
+         * Constructor for a new LinkedListIterator
+         */
+        public LinkedListIterator() {
+
+            prev = null;
+            curr = null;
+            next = head;
+            calledNext = false;
+
+        }
+
+
+        /**
+         * Checks if there are any more
+         * elements in the list
+         * 
+         * @return true if there are more elements in the list
+         */
+        @Override
+        public boolean hasNext() {
+
+            return (next != null);
+
+        }
+
+
+        /**
+         * Gets the next value in the list
+         * 
+         * @return the next value
+         * @throws NoSuchElementException
+         *             if there are no nodes left in the list
+         * 
+         */
+        @Override
+        public E next() {
+
+            if (!hasNext()) {
+                throw new NoSuchElementException("No nodes left in the list.");
+            }
+
+            prev = curr;
+            curr = next;
+            next = next.getNext();
+            if (curr == null) {
+                throw new NoSuchElementException("No nodes left in the list.");
+            }
+            calledNext = true;
+            return curr.data;
+        }
+
+
+        /**
+         * Removes the last object returned with next() from the list
+         *
+         * @throws IllegalStateException
+         *             if next has not been called yet
+         *             and if the element has already been removed
+         */
+        @Override
+        public void remove() {
+
+            if (next == head) {
+                throw new IllegalStateException(
+                    "Next has not been called yet.");
+            }
+            else if (!calledNext) {
+                throw new IllegalStateException(
+                    "The Element has already been removed.");
+            }
+            else if (curr == head) {
+                head = next;
+                curr = null;
+            }
+            else {
+                prev.setNext(curr.getNext());
+                curr = prev;
+                // this code that updates prev is not necessary
+                // because next() must be called before another remove()
+                // and that will update prev, saving this O(n) operation
+                // prev = firstNode;
+                // while ((prev != null) && (prev.getNext() != curr)){
+                // prev = prev.getNext();
+                // }
+            }
+            size--;
+            calledNext = false;
+        }
+    }
+}
