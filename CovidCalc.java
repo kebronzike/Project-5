@@ -1,7 +1,5 @@
 package prj5;
 
-import java.util.Comparator;
-
 // Virginia Tech Honor Code Pledge:
 //
 // As a Hokie, I will conduct myself with honor and integrity at all times.
@@ -33,19 +31,18 @@ public class CovidCalc {
     public CovidCalc(LinkedList<State> states) {
         allStates = states;
     }
-    
-    
+
+
     /**
      * Takes an unsorted list of races and sorts them
      * based on their alphabetically by state
      * 
      * @param unsortedList
      *            the list you want sorted
-     * @return 
+     * @return
      * @return the list after it has been sorted
      */
-    @SuppressWarnings("unchecked")
-    public void sortByAlpha() {
+    public void sortAlpha() {
         for (int i = 0; i < allStates.size(); i++) {
             allStates.get(i).sortAlpha();
         }
@@ -64,6 +61,40 @@ public class CovidCalc {
         for (int i = 0; i < allStates.size(); i++) {
             allStates.get(i).sortCFR();
         }
+    }
+
+
+    /**
+     * Turns the sorted data into a string
+     * 
+     * @return
+     *         a string of all the data
+     */
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        for (int i = 0; i < allStates.size(); i++) {
+            str.append(allStates.get(i).getStateName() + "\n");
+            sortAlpha();
+            str.append(allStates.get(i).toString());
+            str.append("=====\n");
+            sortByCFR();
+            str.append(allStates.get(i).toString());
+            str.append("=====\n");
+        }
+        return str.toString();
+    }
+
+
+    /**
+     * This gets the state in the linked list of states
+     * 
+     * @param index
+     *            the index of the state trying to be found
+     * @return
+     *         the state trying to be found
+     */
+    public LinkedList<State> getState() {
+        return allStates;
     }
 
 }
