@@ -1,4 +1,4 @@
-package prj5;
+ppackage prj5;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,9 +16,7 @@ import java.util.Scanner;
  */
 
 public class Reader {
-
-    private Scanner filereader;
-    private LinkedList<Race> states;
+    private LinkedList<State> states;
     public static final int STARTING_INDEX = 1;
     public static final int FINAL_INDEX = 6;
 
@@ -46,26 +44,37 @@ public class Reader {
      * @return LinkedList<Race> races
      * @throws FileNotFoundException
      */
-    public LinkedList<Race> readFiles(String fileName)
-
+    public LinkedList<State> readFiles(String fileName)
         throws FileNotFoundException {
-        filereader = new Scanner(new File((fileName)));
-        String[] stateNames = filereader.nextLine().split(", *");
+        LinkedList<State> states = new LinkedList<State>();
+        Scanner reader = new Scanner(new File(fileName));
+        String[] stateNames = reader.nextLine().split(", *");
+
         for (int i = 1; i < stateNames.length; i++) {
-            String[] names = stateNames[i].split("_");
-            stateNames[i] = names[1];
+            String[] str = stateNames[i].split("_");
+            stateNames[i] = str[1];
         }
-        while (filereader.hasNextLine()) {
+
+        while (reader.hasNextLine()) {
             LinkedList<Race> race = new LinkedList<Race>();
-            String scan = filereader.nextLine();
-            String[] raceData = scan.split(", *");
-           
-                
+            String str = reader.nextLine();
+            String[] division = str.split(", *");
+
+            for (int i = 1; i < (division.length / 2) + 1; i++) {
+                int index = 0;
+                for (int j = i; j < division.length; j++) {
+                    if (stateNames[i].equals(stateNames[j])) {
+                        index = j;
+                    }
+                }
+                Race race1 = new Race(stateNames[i], division[i],
+                    division[index]);
+                    race.add(race1);
             }
-            
+            states.add(new State(division[0], race));
         }
-        filereader.close();
-        return state;
+        return states;
     }
 
 }
+
