@@ -1,15 +1,5 @@
 package prj5;
 
-// Virginia Tech Honor Code Pledge:
-//
-// As a Hokie, I will conduct myself with honor and integrity at all times.
-// I will not lie, cheat, or steal, nor will I accept the actions of those who
-// do.
-// -- Joshua Murphy (Jmmurphy), Connor Pepin (connorpepin), Kebron Zike
-// (kebronZike)
-
-// -------------------------------------------------------------------------
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -28,7 +18,7 @@ import java.util.Scanner;
 public class Reader {
 
     private Scanner filereader;
-    private LinkedList<Race>[] races;
+    private LinkedList<Race> states;
     public static final int STARTING_INDEX = 1;
     public static final int FINAL_INDEX = 6;
 
@@ -41,10 +31,9 @@ public class Reader {
      *             will throw when a file is not found
      */
     public Reader(String theFileName) throws FileNotFoundException {
-        races = readFiles(theFileName);
-        CovidCalc calc = new CovidCalc(races);
-        calc.toString();
-
+        states = readFiles(theFileName);
+        CovidCalc calc = new CovidCalc(states);
+        System.out.print(calc.toString());
     }
 
 
@@ -57,26 +46,26 @@ public class Reader {
      * @return LinkedList<Race> races
      * @throws FileNotFoundException
      */
-    public LinkedList<Race>[] readFiles(String fileName)
+    public LinkedList<Race> readFiles(String fileName)
 
         throws FileNotFoundException {
         filereader = new Scanner(new File((fileName)));
-        filereader.nextLine();
+        String[] stateNames = filereader.nextLine().split(", *");
+        for (int i = 1; i < stateNames.length; i++) {
+            String[] names = stateNames[i].split("_");
+            stateNames[i] = names[1];
+        }
         while (filereader.hasNextLine()) {
-            String readline = filereader.nextLine();
-            String[] readNext = readline.split(",");
-            for (int index = STARTING_INDEX; index <= readNext.length
-                - FINAL_INDEX; index++) {
-                String deaths = readNext[5 + index];
-                String cases = readNext[index];
-
+            LinkedList<Race> race = new LinkedList<Race>();
+            String scan = filereader.nextLine();
+            String[] raceData = scan.split(", *");
+           
+                
             }
-
+            
         }
         filereader.close();
-
-        return races;
-
+        return state;
     }
 
 }
