@@ -1,10 +1,9 @@
 package prj5;
 
 public class Race implements Comparable<Race> {
-    private RaceEnum enumrace;
+    private String raceName;
     private String fatalities;
     private String totalcases;
-    private String homestate;
 
     /**
      * this is the constructor for races, this will create a race that is made
@@ -17,22 +16,11 @@ public class Race implements Comparable<Race> {
      * @param cases
      *            the cases for the race
      */
-    public Race(RaceEnum races, String cases, String deaths, String state) {
-
-        enumrace = races;
+    public Race(String name, String cases, String deaths) {
+        raceName = name;
         fatalities = deaths;
         totalcases = cases;
-        homestate = state;
-    }
 
-
-    /**
-     * this will get the state of a race
-     * 
-     * @return the state
-     */
-    public String getState() {
-        return homestate;
     }
 
 
@@ -41,8 +29,8 @@ public class Race implements Comparable<Race> {
      * 
      * @return the race
      */
-    public RaceEnum getRace() {
-        return enumrace;
+    public String getRace() {
+        return raceName;
     }
 
 
@@ -52,6 +40,9 @@ public class Race implements Comparable<Race> {
      * @return String deaths
      */
     public int getDeaths() {
+        if (fatalities == "NA") {
+            return -1;
+        }
         return Integer.parseInt(fatalities);
     }
 
@@ -62,6 +53,9 @@ public class Race implements Comparable<Race> {
      * @return String of cases
      */
     public int getCases() {
+        if (fatalities == "NA") {
+            return -1;
+        }
         return Integer.parseInt(totalcases);
     }
 
@@ -80,14 +74,32 @@ public class Race implements Comparable<Race> {
         }
         if (obj.getClass().equals(this.getClass())) {
             Race race1 = (Race)obj;
-            if (this.enumrace.equals(race1.getRace()) && Integer.parseInt(
+            if (this.raceName.equals(race1.getRace()) && Integer.parseInt(
                 totalcases) == race1.getCases() && Integer.parseInt(
-                    fatalities) == race1.getDeaths() && this.homestate.equals(
-                        race1.getState())) {
+                    fatalities) == race1.getDeaths()) {
                 return true;
             }
         }
         return false;
+    }
+
+
+    /**
+     * Takes the deaths and cases of a race
+     * and calulates the CFR
+     * 
+     * 
+     * @param deaths
+     *            the number of deaths
+     * @param cases
+     *            the number of cases
+     * @return the Covid Fatality Ratio
+     */
+    public double calculateCFR() {
+        if (getCases() == -1 || getDeaths() == -1) {
+            return -1;
+        }
+        return (getDeaths() / getCases()) * 100;
     }
 
 
@@ -98,24 +110,16 @@ public class Race implements Comparable<Race> {
      */
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("Race: ");
-        str.append(enumrace);
-        str.append(" Cases: ");
-        str.append(totalcases);
-        str.append(" Deaths: ");
-        str.append(fatalities);
-        str.append(" State: ");
-        str.append(homestate);
+        str.append(raceName + ": ");
+        str.append(getCases() + " cases, ");
+        str.append(getDeaths() + " deaths, ");
+        str.append(calculateCFR() + "% CFR");
         return str.toString();
     }
 
 
-    /**
-     * this will compare to races to see which one is greater
-     */
     @Override
     public int compareTo(Race o) {
-        return this.getRace().toString().compareTo(o.getRace().toString());
+        return 0;
     }
-
 }
