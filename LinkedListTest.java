@@ -380,5 +380,30 @@ public class LinkedListTest extends TestCase {
             exception instanceof IllegalStateException);
 
     }
+    
+    
+    /**
+     * Tests the getNode class
+     */
+    public void testGetNode() {
+        list.add("Hello");
+        list.add("hi");
+        list.add("whats up");
+        list.add("noooo");
 
+        assertEquals("Hello", list.getNode(0).getData());
+        assertEquals("hi", list.getNode(1).getData());
+        assertEquals("whats up", list.getNode(2).getData());
+        assertEquals("noooo", list.getNode(3).getData());
+    }
+
+    
+//    public void testSortList() {
+//        list.add("A");
+//        list.add("B");
+//        list.add("C");
+//        list.add("D");
+//        
+//        list.sortList();
+//    }
 }
