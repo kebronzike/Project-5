@@ -33,7 +33,7 @@ public class RaceTest extends student.TestCase {
      * this will test the getdeaths method
      */
     public void testgetDeaths() {
-        assertEquals(tester.getDeaths(), 10);
+        assertEquals(tester.getDeaths(), 10, 0.01);
     }
 
 
@@ -41,7 +41,7 @@ public class RaceTest extends student.TestCase {
      * this will test the getCasess method
      */
     public void testgetCases() {
-        assertEquals(tester.getCases(), 10);
+        assertEquals(tester.getCases(), 10, 0.01);
     }
 
 
@@ -66,14 +66,6 @@ public class RaceTest extends student.TestCase {
 
 
     /**
-     * this will test the compareTo method
-     */
-    public void testcompareTo() {
-        assertEquals(tester.compareTo(tester), 0);
-    }
-
-
-    /**
      * this will test the calculateCFR method
      */
     public void testcalculateCFR() {
@@ -90,7 +82,7 @@ public class RaceTest extends student.TestCase {
      */
     public void testtoString() {
         assertEquals(tester.toString(),
-            "black: 10 cases, 10 deaths, 100.0% CFR");
+            "black: 10 cases, 100% CFR");
     }
 
 }
