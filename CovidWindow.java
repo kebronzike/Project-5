@@ -138,14 +138,20 @@ public class CovidWindow {
         vertBar.setY(vertBar.getY() + vertBar.getHeight());
         vertBar.setX(vertBar.getX() - vertBar.getWidth() / 4);
         window.addShape(vertBar);
-        if(race.calculateCFR() != -1) {
-            if((race.calculateCFR() % 1) < 0.05) {
+        if (race.calculateCFR() != -1) {
+            if ((race.calculateCFR() % 1) < 0.05) {
                 int cfrRatio = (int)race.calculateCFR();
-                str.append( cfrRatio + "%");
+                str.append(cfrRatio + "%");
             }
             else {
-                
+                str.append(String.format("%.1f", race.calculateCFR()) + "%");
             }
+
+            TextShape cfrDisplay = new TextShape(vertBar.getX(), vertBar.getY(),
+                str.toString(), Color.BLACK, font);
+            cfrDisplay.setY(cfrDisplay.getY() + (2 * cfrDisplay.getHeight()));
+
+            window.addShape(cfrDisplay);
         }
     }
 
