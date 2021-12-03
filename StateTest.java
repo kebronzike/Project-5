@@ -81,7 +81,7 @@ public class StateTest extends student.TestCase {
             + "black: 2 cases, 350% CFR\r\n" + "latinx: 2 cases, 400% CFR\r\n"
             + "other: 10 cases, 1000% CFR\r\n" + "white: 6 cases, 83.3% CFR\r\n"
             + "");
-        test1.sortCFR();
+        test1.sortByCFR();
         assertEquals(test1.toString(), "black: 2 cases, 350% CFR\r\n"
             + "latinx: 2 cases, 400% CFR\r\n" + "other: 10 cases, 1000% CFR\r\n"
             + "asian: 4 cases, 100% CFR\r\n" + "white: 6 cases, 83.3% CFR\r\n"

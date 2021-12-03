@@ -1,5 +1,3 @@
-package prj5;
-
 // Virginia Tech Honor Code Pledge:
 //
 // As a Hokie, I will conduct myself with honor and integrity at all times.
@@ -10,17 +8,16 @@ package prj5;
 
 // -------------------------------------------------------------------------
 
+package prj5;
+
 /**
  * Implements the sorting functions so you can
- * sort and reagganrge the list based on either
- * the Covid Fatality Rate or by the alphabetically
- * 
+ * sort and rearrange the list based on either
+ * the COVID Fatality Rate or by the alphabetically
  * 
  * @author Joshua Murphy (jmmurphy)
- * @author Connor Pepin (connorpepin)
  * @author Kebron Zike (kebronZike)
- * @version 2021.11.17
- *
+ * @version 2021.11.20
  */
 public class CovidCalc {
     public LinkedList<State> allStates;
@@ -42,7 +39,7 @@ public class CovidCalc {
      * @return
      * @return the list after it has been sorted
      */
-    public void sortAlpha() {
+    public void sortByAlpha() {
         for (int i = 0; i < allStates.size(); i++) {
             allStates.get(i).sortAlpha();
         }
@@ -59,7 +56,7 @@ public class CovidCalc {
      */
     public void sortByCFR() {
         for (int i = 0; i < allStates.size(); i++) {
-            allStates.get(i).sortCFR();
+            allStates.get(i).sortByCFR();
         }
     }
 
@@ -74,7 +71,7 @@ public class CovidCalc {
         StringBuilder str = new StringBuilder();
         for (int i = 0; i < allStates.size(); i++) {
             str.append(allStates.get(i).getStateName() + "\n");
-            sortAlpha();
+            sortByAlpha();
             str.append(allStates.get(i).toString());
             str.append("=====\n");
             sortByCFR();

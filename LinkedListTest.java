@@ -1,9 +1,3 @@
-package prj5;
-
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import student.TestCase;
-
 // Virginia Tech Honor Code Pledge:
 //
 // As a Hokie, I will conduct myself with honor and integrity at all times.
@@ -13,6 +7,12 @@ import student.TestCase;
 // (kebronZike)
 
 // -------------------------------------------------------------------------
+
+package prj5;
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import student.TestCase;
 
 /**
  * Test classes for the Linked List class
@@ -380,30 +380,5 @@ public class LinkedListTest extends TestCase {
             exception instanceof IllegalStateException);
 
     }
-    
-    
-    /**
-     * Tests the getNode class
-     */
-    public void testGetNode() {
-        list.add("Hello");
-        list.add("hi");
-        list.add("whats up");
-        list.add("noooo");
 
-        assertEquals("Hello", list.getNode(0).getData());
-        assertEquals("hi", list.getNode(1).getData());
-        assertEquals("whats up", list.getNode(2).getData());
-        assertEquals("noooo", list.getNode(3).getData());
-    }
-
-    
-//    public void testSortList() {
-//        list.add("A");
-//        list.add("B");
-//        list.add("C");
-//        list.add("D");
-//        
-//        list.sortList();
-//    }
 }

@@ -1,3 +1,13 @@
+// Virginia Tech Honor Code Pledge:
+//
+// As a Hokie, I will conduct myself with honor and integrity at all times.
+// I will not lie, cheat, or steal, nor will I accept the actions of those who
+// do.
+// -- Joshua Murphy (Jmmurphy), Connor Pepin (connorpepin), Kebron Zike
+// (kebronZike)
+
+// -------------------------------------------------------------------------
+
 package prj5;
 
 /**
@@ -81,8 +91,7 @@ public class RaceTest extends student.TestCase {
      * this will test the toString method
      */
     public void testtoString() {
-        assertEquals(tester.toString(),
-            "black: 10 cases, 100% CFR");
+        assertEquals(tester.toString(), "black: 10 cases, 100% CFR");
     }
 
 }

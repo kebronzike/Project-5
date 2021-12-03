@@ -1,3 +1,13 @@
+// Virginia Tech Honor Code Pledge:
+//
+// As a Hokie, I will conduct myself with honor and integrity at all times.
+// I will not lie, cheat, or steal, nor will I accept the actions of those who
+// do.
+// -- Joshua Murphy (Jmmurphy), Connor Pepin (connorpepin), Kebron Zike
+// (kebronZike)
+
+// -------------------------------------------------------------------------
+
 package prj5;
 
 import java.io.File;
@@ -32,6 +42,7 @@ public class Reader {
         states = readFiles(theFileName);
         CovidCalc calc = new CovidCalc(states);
         System.out.print(calc.toString());
+        new CovidWindow(calc);
     }
 
 
@@ -69,10 +80,11 @@ public class Reader {
                 }
                 Race race1 = new Race(stateNames[i], division[i],
                     division[index]);
-                    race.add(race1);
+                race.add(race1);
             }
             states.add(new State(division[0], race));
         }
         return states;
     }
+
 }

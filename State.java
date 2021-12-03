@@ -1,5 +1,3 @@
-package prj5;
-
 // Virginia Tech Honor Code Pledge:
 //
 // As a Hokie, I will conduct myself with honor and integrity at all times.
@@ -9,6 +7,8 @@ package prj5;
 // (kebronZike)
 
 // -------------------------------------------------------------------------
+
+package prj5;
 
 /**
  * This represents the state class it is made up of the state name and a
@@ -116,7 +116,7 @@ public class State {
     /**
      * this will sort the linkedlist of races by CFR
      */
-    public void sortCFR() {
+    public void sortByCFR() {
         CompareCFR cfr = new CompareCFR();
         races.sortList(cfr);
     }

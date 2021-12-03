@@ -1,23 +1,22 @@
+// Virginia Tech Honor Code Pledge:
+//
+// As a Hokie, I will conduct myself with honor and integrity at all times.
+// I will not lie, cheat, or steal, nor will I accept the actions of those who
+// do.
+// -- Joshua Murphy (Jmmurphy), Connor Pepin (connorpepin), Kebron Zike
+// (kebronZike)
+
+// -------------------------------------------------------------------------
+
 package prj5;
 
-//Virginia Tech Honor Code Pledge:
-//
-//As a Hokie, I will conduct myself with honor and integrity at all times.
-//I will not lie, cheat, or steal, nor will I accept the actions of those who
-//do.
-//-- Joshua Murphy (Jmmurphy), Connor Pepin (connorpepin), Kebron Zike
-//(kebronZike)
-
-//-------------------------------------------------------------------------
 /**
-* This class tests the compareAlpha class
-* 
-* @author Joshua Murphy (jmmurphy)
-* @author Connor Pepin (connorpepin)
-* @author Kebron Zike (kebronZike)
-* @version 2021.11.15
-* 
-*/
+ * this will test the CompareAlpha class
+ * 
+ * @author Joshua Murphy (jmmurphy)
+ * @author Kebron Zike (kebronZike)
+ * @version 2021.11.20
+ */
 public class CompareAlphaTest extends student.TestCase {
 
     private CompareAlpha test1;
@@ -42,7 +41,7 @@ public class CompareAlphaTest extends student.TestCase {
     public void testCompareAlpha() {
         assertEquals(test1.compare(a, b), -1);
         assertEquals(test1.compare(c, b), 1);
-        assertEquals(test1.compare(a, a), 1);
+        assertEquals(test1.compare(a, a), 0);
     }
 
 }

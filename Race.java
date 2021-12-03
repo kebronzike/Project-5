@@ -1,5 +1,24 @@
+// Virginia Tech Honor Code Pledge:
+//
+// As a Hokie, I will conduct myself with honor and integrity at all times.
+// I will not lie, cheat, or steal, nor will I accept the actions of those who
+// do.
+// -- Joshua Murphy (Jmmurphy), Connor Pepin (connorpepin), Kebron Zike
+// (kebronZike)
+
+// -------------------------------------------------------------------------
+
 package prj5;
 
+/**
+ * this is the Race class, it takes in a name, cases, and deaths and has
+ * multiple methods
+ * 
+ * @author Joshua Murphy (jmmurphy)
+ * @author Connor Pepin (connorpepin)
+ * @author Kebron Zike (kebronZike)
+ * @version 2021.11.15
+ */
 public class Race {
     private String raceName;
     private String fatalities;
@@ -97,7 +116,7 @@ public class Race {
      */
     public double calculateCFR() {
         if (getCases() == -1 || getDeaths() == -1) {
-            return -1.0;
+            return -1;
         }
         return (getDeaths() / getCases()) * 100;
     }

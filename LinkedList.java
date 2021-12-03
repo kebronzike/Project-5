@@ -1,9 +1,3 @@
-package prj5;
-
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-
 // Virginia Tech Honor Code Pledge:
 //
 // As a Hokie, I will conduct myself with honor and integrity at all times.
@@ -13,6 +7,13 @@ import java.util.NoSuchElementException;
 // (kebronZike)
 
 // -------------------------------------------------------------------------
+
+package prj5;
+
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  * Stores the data for the project
  * 
@@ -308,16 +309,12 @@ public class LinkedList<E> {
      *            the type of comparator used for the sorting
      */
     public void sortList(Comparator<E> typeOfComparator) {
-        for (int i = 0; i < this.size() - 1; i++) {
-            int tempDex = i;
-            for (int j = i+1; j < this.size(); j++) {
-                if (typeOfComparator.compare(get(tempDex), get(j)) > 0) {
-                    tempDex = j;
-                }
+        for (int i = 1; i < size; i++) {
+            for (int j = i; (j > 0) && typeOfComparator.compare(get(i), get(i
+                - 1)) < 0; j++) {
+                switchNode(j, j - 1);
             }
-            switchNode(i, tempDex);
         }
-        
     }
 
 

@@ -1,7 +1,3 @@
-package prj5;
-
-import java.util.Comparator;
-
 // Virginia Tech Honor Code Pledge:
 //
 // As a Hokie, I will conduct myself with honor and integrity at all times.
@@ -11,32 +7,42 @@ import java.util.Comparator;
 // (kebronZike)
 
 // -------------------------------------------------------------------------
+
+package prj5;
+
+import java.util.Comparator;
+
 /**
- * Compares races by CFR value
+ * this will create the CompareCFR class
  * 
  * @author Joshua Murphy (jmmurphy)
- * @author Connor Pepin (connorpepin)
  * @author Kebron Zike (kebronZike)
- * @version 2021.11.15
- * 
+ * @version 2021.11.20
  */
 public class CompareCFR implements Comparator<Race> {
 
     /**
-     * This compares races by CFR values
+     * this will compare two races, and check to see if one race has a greater
+     * CFR
      * 
-     * @param o1
-     *            the first race being compared
-     * @param o2
-     *            the second race being compared
+     * @param Race
+     *            o1
+     *            first race being compared
+     * @param Race
+     *            o2
+     *            second race being compared
      */
     @Override
     public int compare(Race o1, Race o2) {
         if (o1.calculateCFR() > o2.calculateCFR()) {
             return -1;
         }
-        else {
+        else if (o1.calculateCFR() < o2.calculateCFR()) {
             return 1;
         }
+        else {
+            return 0;
+        }
     }
+
 }

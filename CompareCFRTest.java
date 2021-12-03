@@ -1,5 +1,3 @@
-package prj5;
-
 // Virginia Tech Honor Code Pledge:
 //
 // As a Hokie, I will conduct myself with honor and integrity at all times.
@@ -9,14 +7,15 @@ package prj5;
 // (kebronZike)
 
 // -------------------------------------------------------------------------
+
+package prj5;
+
 /**
- * This tests all methods in the compareCFR class
+ * this will test the CompareCFR class
  * 
  * @author Joshua Murphy (jmmurphy)
- * @author Connor Pepin (connorpepin)
  * @author Kebron Zike (kebronZike)
- * @version 2021.11.15
- * 
+ * @version 2021.11.20
  */
 public class CompareCFRTest extends student.TestCase {
 
@@ -42,6 +41,6 @@ public class CompareCFRTest extends student.TestCase {
     public void testCompareAlpha() {
         assertEquals(test1.compare(a, b), 1);
         assertEquals(test1.compare(b, a), -1);
-        assertEquals(test1.compare(c, c), 1);
+        assertEquals(test1.compare(c, c), 0);
     }
 }
